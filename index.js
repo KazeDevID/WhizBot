@@ -25,9 +25,11 @@ exif.create(
 
 // Pairing
 const pairingCode = process.argv.includes("-pairing");
+const useQr = process.argv.includes("-qr")
 
-if (!pairingCode) {
-  console.log("Use -pairing");
+if (!pairingCode && !useQr) {
+  console.log("If you want to use code pairing, type node . -pairing");
+  console.log("If you want to use a qr code, type node . -qr");
 }
 
 const rl = readline.createInterface({
@@ -39,7 +41,6 @@ const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
 
 const start = async () => {
-	renderLogs()
 	const store = makeInMemoryStore({
 		logger: pino().child({
 			level: 'debug'
@@ -49,12 +50,20 @@ const start = async () => {
 		config.qrcode_path
 	)
 	const bot = makeWASocket({
-      printQRInTerminal: !pairingCode,
+    ...(!pairingCode && !useQr && {
+        printQRInTerminal: false
+    }),
+    ...(pairingCode && {
+        printQRInTerminal: !pairingCode
+    }),
+    ...(useQr && {
+        printQRInTerminal: true
+    }),
       logger: pino({
         level: "silent",
       }),
       browser: ["Chrome (Linux)", "", ""], 
-      printQRInTerminal: true,
+     // printQRInTerminal: true,
       auth: state,
       msgRetryCounterCache
     });
@@ -79,6 +88,7 @@ const start = async () => {
 	store.bind(bot.ev)
 	bot.ev.on('connection.update', (update) => {
 		connectionUpdate(update, start)
+		renderLogs()
 	})
 	bot.ev.on('messages.upsert', (message) => {
 		onMessageUpsert(message, bot)
