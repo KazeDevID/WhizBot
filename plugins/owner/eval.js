@@ -3,8 +3,8 @@ const { exec } = require('child_process');
 
 Command.create({
 	name: '$',
-	run({ q, reply, fromMe }) {
-		if (!fromMe) return 
+	run({ q, reply, isCreator }) {
+		if (!isCreator) return 
 		if (!q) return reply('undepined')
         reply('_Executing..._')
         exec(q, async (err, stdout) => {
@@ -19,8 +19,8 @@ Command.create({
 
 Command.create({
 	name: '>',
-	run({ q, reply, fromMe }) {
-		if (!fromMe) return 
+	run({ q, reply, isCreator }) {
+		if (!isCreator) return 
 		if (!q) return reply('undepined')
         try {
         let evaled = eval(q)
