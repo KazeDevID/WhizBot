@@ -1,5 +1,6 @@
 const {
-	prefix
+	prefix,
+	owner_number
 } = require('../config')
 const getGroupAdmins = require('../functions/admins')
 
@@ -41,6 +42,9 @@ const onMessageUpsert = async (msg, bot) => {
 	const isCmd = body.startsWith(prefix)
 	const command = isCmd ? body.slice(1).trim().split(/ +/).shift().toLowerCase() : undefined
 	const sender = isGroup ? info.key.participant : from
+	
+    const isCreator = [...owner_number].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender);
+	
 	const groupMetadata = isGroup ? await bot.groupMetadata(from) : ''
 	const groupName = isGroup ? await groupMetadata.subject : ''
 	const groupDesc = isGroup ? await groupMetadata.desc : ''
@@ -48,6 +52,8 @@ const onMessageUpsert = async (msg, bot) => {
 	const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : []
 	const isAdmin = groupAdmins.includes(sender)
 	const botIsAdmin = groupAdmins.includes(bot.user.id.split(':')[0]+'@s.whatsapp.net')
+	
+	
 	const args = body.trim().split(/ +/).splice(1)
 	const q = args.join(' ')
     
@@ -94,6 +100,7 @@ const onMessageUpsert = async (msg, bot) => {
 		pushname,
 		fromMe,
 		sender,
+		isCreator,
 		isGroup,
 		groupName,
 		groupDesc,
