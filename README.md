@@ -10,3 +10,4 @@ https://github.com/KazeDevID/WhizBot/blob/0af18770c61014b4649284e761ac7735a3d335
 - added the creator function
 - changed the eval feature
 - fixed code pairing and added qr code
+https://github.com/KazeDevID/WhizBot/tree/v1.0.0
