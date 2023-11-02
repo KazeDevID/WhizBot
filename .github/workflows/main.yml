@@ -1,5 +1,5 @@
-name: Learning GitHub Actions
-run-name: ${{ github.actor }} is sending a telegram notification ⚡
+name: run WhatsApp bot using actions by KazeDevID
+run-name: WhatsApp bot  ⚡
 on: [push]
 jobs:
   Learning-GitHub-Actions:
@@ -17,5 +17,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: execute py script
+      - name: execute js script by KazeDevID
         run: node .
