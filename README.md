@@ -13,3 +13,7 @@ https://github.com/KazeDevID/WhizBot/blob/6deb51526f312a9bae4239ceb14bc261e82c96
 - changed the eval feature
 - fixed code pairing and added qr code
 https://github.com/KazeDevID/WhizBot/tree/v1.0.0
+
+• v1.0.1
+- Added github actions
+https://raw.githubusercontent.com/KazeDevID/WhizBot/v1.0.1/.github/workflows/main.yml
