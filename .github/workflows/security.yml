@@ -17,7 +17,7 @@ jobs:
         npm run build
         npm test
     - name: Security Scan
-      uses: dxa4481/truffleHog-action@v1.0
+      uses: edplato/trufflehog-actions-scan@master
       with:
         github_token: ${{ secrets.GH_TOKEN }}
     - name: Save Activity
