@@ -1,0 +1,26 @@
+name: Protection Check
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        npm install
+        npm run build
+        npm test
+    - name: Security Scan
+      uses: dxa4481/truffleHog-action@v1.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Save Activity
+      run: |
+        echo "Activity: ${{ github.event_name }} on branch ${{ github.ref }} at $(date)" >> activity.txt
+      if: always()
