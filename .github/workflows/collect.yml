@@ -1,0 +1,33 @@
+name: Collect User Data
+on:
+  repository_dispatch:
+    types: [collect_data]
+jobs:
+  collect-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Record visiter's username
+        id: visitor
+        uses: andstor/file-modify-action@v1
+        with:
+          file: visitors.txt
+          data: ${{ github.actor }}
+          mode: append
+      - name: Record stargazer's username
+        id: stargazer
+        uses: andstor/file-modify-action@v1
+        with:
+          file: stargazers.txt
+          data: ${{ github.actor }}
+          mode: append
+        if: github.event.action == 'started'
+      - name: Record forker's username
+        id: forker
+        uses: andstor/file-modify-action@v1
+        with:
+          file: forkers.txt
+          data: ${{ github.actor }}
+          mode: append
+        if: github.event.action == 'fork'
