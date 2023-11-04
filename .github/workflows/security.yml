@@ -19,7 +19,7 @@ jobs:
     - name: Security Scan
       uses: dxa4481/truffleHog-action@v1.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GH_TOKEN }}
     - name: Save Activity
       run: |
         echo "Activity: ${{ github.event_name }} on branch ${{ github.ref }} at $(date)" >> activity.txt
