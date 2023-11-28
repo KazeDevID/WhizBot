@@ -19,3 +19,7 @@ https://github.com/KazeDevID/WhizBot/tree/v1.0.0
 - Tutorial continues to chat on my number
 - But this action will work once the bot session already exists
 https://raw.githubusercontent.com/KazeDevID/WhizBot/v1.0.1/.github/workflows/main.yml
+
+• v1.0.2
+- Added Cai fiture & list menu
+https://github.com/KazeDevID/WhizBot/tree/v1.0.2
