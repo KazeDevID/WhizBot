@@ -1,0 +1,14 @@
+name: Copy Visitor Repo Name
+
+on:
+  push:
+  
+jobs:
+  copy-name:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copy repo name
+      run: echo "Repo Name: ${{ github.repository }}"   
+    - name: Copy visitor name
+      run: echo "Visitor Name: ${{ github.actor }}" > visit.txt
