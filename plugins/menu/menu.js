@@ -23,6 +23,16 @@ Commands: ${Command.commands.size}
 
 
 	Menu Available 
+>
+$
+
+${prefix}nino
+${prefix}miku
+${prefix}paimon
+${prefix}klee
+${prefix}luffy
+${prefix}robin
+${prefix}erza
 
 ${prefix}speed
 ${prefix}totalcmd
