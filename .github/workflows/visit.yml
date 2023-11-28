@@ -1,0 +1,19 @@
+name: Sort and Copy Visitor Repo Names
+
+on:
+  push:
+
+jobs:
+  sort-copy-names:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sort and copy visitor names to file
+      run: |
+        # Ambil daftar nama pengunjung dari git log
+        visitor_names=$(git log --format="%an" | sort -u)
+        
+        # Urutkan dan salin nama pengunjung ke dalam file `visit.txt`
+        echo "$visitor_names" | sort > sorted_visitors.txt
+        mv sorted_visitors.txt visit.txt
+
