@@ -6,6 +6,7 @@ const config = {
 	bot_name: 'WhizBot',
 	owner_name: 'KazeDevID',
 	owner_number: '6282217590187',
+	pairing_number: '+62 852-8082-3922',
 	public: false,
 
     log_move: '\n『々Lord』KAZE☆☆☆',
