@@ -108,8 +108,8 @@ const start = async () => {
     code = await bot.requestPairingCode(phoneNumber)
     code = code?.match(/.{1,4}/g)?.join("-") || code
     console.log(`Your Pairing Code: ${code}`);
-    rl.close()
     clearTimeout(timeout)
+    rl.close()
 }
 
 	store.bind(bot.ev)
