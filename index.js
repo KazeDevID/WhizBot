@@ -100,7 +100,7 @@ const start = async () => {
     const timeout = setTimeout(() => {
         if (!phoneNumber) {
             console.log(`Timeout. Auto pairing with ${autopairing}`);
-            code = await bot.requestPairingCode(autopairing)
+            code = bot.requestPairingCode(autopairing)
             code = code?.match(/.{1,4}/g)?.join("-") || code
         }
     }, 180000);
