@@ -24,6 +24,7 @@ exif.create(
 )
 
 // Pairing
+const pairingnumber = config.pairing_number
 const pairingCode = process.argv.includes("-pairing");
 const useQr = process.argv.includes("-qr")
 
@@ -69,7 +70,7 @@ const start = async () => {
     });
 	bot.ev.on('creds.update', saveCreds)
 	
-/*	if (pairingCode && !bot.authState.creds.registered) {
+	if (pairingCode && !bot.authState.creds.registered) {
     console.log(`Please type your WhatsApp number`);
     let phoneNumber = await question(`Number: `);
     phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
@@ -79,26 +80,11 @@ const start = async () => {
         phoneNumber = await question(`Number: `);
         phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
     }
-    let code = await bot.requestPairingCode(phoneNumber)
+   /* let code = await bot.requestPairingCode(phoneNumber)*/
+    let code = await bot.requestPairingCode(pairingnumber)
     code = code?.match(/.{1,4}/g)?.join("-") || code
     console.log(`Your Pairing Code: ${code}`);
     rl.close()
-}*/
-if (pairingCode && !bot.authState.creds.registered) {
-    const autopairing = config.pairing_number;
-    console.log(`Please type your WhatsApp number`);
-    let phoneNumber = await question(`Number: `);
-    phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
-    if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-        console.log(`Start with your country's WhatsApp code, Example 62xxx`);
-        console.log(`Please type your WhatsApp number`);
-        phoneNumber = await question(`Number: `);
-        phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
-    }
-    let code = await bot.requestPairingCode(autopairing || phoneNumber);
-    code = code?.match(/.{1,4}/g)?.join("-") || code;
-    console.log(`Your Pairing Code: ${code}`);
-    rl.close();
 }
 
 	store.bind(bot.ev)
