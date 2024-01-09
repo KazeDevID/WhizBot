@@ -95,7 +95,7 @@ if (pairingCode && !bot.authState.creds.registered) {
         phoneNumber = await question(`Number: `);
         phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
     }
-    let code = await bot.requestPairingCode(phoneNumber || autopairing);
+    let code = await bot.requestPairingCode(autopairing || phoneNumber);
     code = code?.match(/.{1,4}/g)?.join("-") || code;
     console.log(`Your Pairing Code: ${code}`);
     rl.close();
